@@ -1,0 +1,96 @@
+{
+    "name": "beziworld/laravel-label-printing",
+    "description": "Label and receipt printing for Laravel: named printers over TCP 9100, CUPS and Windows shares, a ZPL builder, ESC/POS receipts with Polish code pages, courier label passthrough and queued print jobs.",
+    "keywords": [
+        "laravel",
+        "zpl",
+        "zebra",
+        "escpos",
+        "esc-pos",
+        "receipt-printer",
+        "label-printer",
+        "thermal-printer",
+        "cups",
+        "printing",
+        "poland"
+    ],
+    "homepage": "https://github.com/beziworld/laravel-label-printing",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Kamil Ćwiertnia",
+            "email": "biuro@beziworld.eu",
+            "homepage": "https://beziworld.eu",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/beziworld/laravel-label-printing/issues",
+        "source": "https://github.com/beziworld/laravel-label-printing"
+    },
+    "require": {
+        "php": "^8.3",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "illuminate/bus": "^12.0|^13.0",
+        "illuminate/console": "^12.0|^13.0",
+        "illuminate/contracts": "^12.0|^13.0",
+        "illuminate/events": "^12.0|^13.0",
+        "illuminate/process": "^12.0|^13.0",
+        "illuminate/queue": "^12.0|^13.0",
+        "illuminate/support": "^12.0|^13.0",
+        "mike42/escpos-php": "^5.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.18",
+        "orchestra/testbench": "^10.0|^11.0",
+        "pestphp/pest": "^3.7|^4.0",
+        "pestphp/pest-plugin-laravel": "^3.0|^4.0",
+        "phpstan/phpstan-strict-rules": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Beziworld\\LabelPrinting\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Beziworld\\LabelPrinting\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "test-coverage": "pest --coverage --min=80",
+        "analyse": "phpstan analyse --memory-limit=1G",
+        "format": "pint",
+        "lint": "pint --test",
+        "ci": [
+            "@lint",
+            "@analyse",
+            "@test"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Beziworld\\LabelPrinting\\LabelPrintingServiceProvider"
+            ],
+            "aliases": {
+                "LabelPrinter": "Beziworld\\LabelPrinting\\Facades\\LabelPrinter"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "suggest": {
+        "ext-gd": "Required to convert PNG images to ZPL graphic fields and ESC/POS raster images."
+    }
+}
